@@ -1,8 +1,13 @@
+DIV_PARAMETER = 0.5
 class Triangle
-  def self.area_of_triangle(a, h)
-    area = a.to_f * h.to_f * 1 / 2
-    "triangle area is #{area} "
+  def initialize(base, height)
+    @base = base.to_f
+    @height = height.to_f
+  end
+
+  def get_area_of_triangle
+    @base * @height * DIV_PARAMETER
   end
 end
 
-p Triangle.area_of_triangle(5, 3)
+puts Triangle.new(5, 3).get_area_of_triangle
