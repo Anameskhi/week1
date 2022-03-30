@@ -1,32 +1,31 @@
-
 class Triangle
-  def initialize(a, b, c)
-    @a, @b, @c = [a.to_i, b.to_i, c.to_i].sort
+  def initialize(side1, side2, side3)
+    @side1, @side2, @side3 = [side1.to_i, side2.to_i, side3.to_i].sort
   end
 
   def calculate
-    if rectangular? && isosceles?
+    if is_rectangular? && is_isosceles?
       'triangle is rectangle isosceles'
-    elsif rectangular?
+    elsif is_rectangular?
       'triangle is rectangle'
-    elsif equilateral?
+    elsif is_equilateral?
       'triangle is equilateral'
-    elsif isosceles?
+    elsif is_isosceles?
       'triangle is isosceles'
 
     end
   end
 
-  def rectangular?
-    @a**2 + @b**2 == @c**2
+  def is_rectangular?
+    @side1**2 + @side2**2 == @side3**2
   end
 
-  def isosceles?
-    @a == @b || @b == @c
+  def is_isosceles?
+    @side1 == @side2 || @side2 == @side3
   end
 
-  def equilateral?
-    @a == @b && @b == @c
+  def is_equilateral?
+    @side1 == @side2 && @side2 == @side3
   end
 end
 
