@@ -1,11 +1,17 @@
+OPTIMAL = 110
+
 class IdealWeight
-  OPTIMAL = 110
-  def self.calculate(name, height)
-    ideal_weight = height.to_i - OPTIMAL
+  def initialize(name, height)
+    @name = name
+    @height = height
+  end
+
+  def calculate
+    ideal_weight = @height.to_i - OPTIMAL
     if ideal_weight.negative?
       'Your weight is already optimal'
     else
-      "#{name}'s ideal weight is #{ideal_weight}"
+      "#{@name}'s ideal weight is #{ideal_weight}"
     end
   end
 end
@@ -15,4 +21,4 @@ name = gets.chomp
 puts "what's your height in cm ?"
 height = gets.chomp
 
-p IdealWeight.calculate(name, height)
+p IdealWeight.new(name, height).calculate
