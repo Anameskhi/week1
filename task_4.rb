@@ -1,8 +1,7 @@
-# frozen_string_literal: true
+FIX_PARAMETER = 4
+DIV_PARAMETER = 2
 
 class Discriminant
-  FIX_PARAMETER = 4
-  DIV_PARAMETER = 2
   def initialize(parameter1, parameter2, parameter3)
     @parameter1 = parameter1.to_f
     @parameter2 = parameter2.to_f
@@ -14,14 +13,22 @@ class Discriminant
     @parameter2**2 - FIX_PARAMETER * @parameter1 * @parameter3
   end
 
+  def find_discriminant_positive
+    x1 = (-@parameter2 - Math.sqrt(@discriminant)) / DIV_PARAMETER * @parameter1
+    x2 = (-@parameter2 + Math.sqrt(@discriminant)) / DIV_PARAMETER * @parameter1
+    puts "Discriminant : #{@discriminant}\nx1 : #{x1}\nx2 : #{x2}"
+  end
+
+  def find_discriminant_zero
+    x = -@parameter2 / (@parameter1 * DIV_PARAMETER)
+    puts "Discriminant : #{@discriminant}\nx : #{x} "
+  end
+
   def find_elements
     if @discriminant.positive?
-      x1 = (-@parameter2 - Math.sqrt(@discriminant)) / DIV_PARAMETER * @parameter1
-      x2 = (-@parameter2 + Math.sqrt(@discriminant)) / DIV_PARAMETER * @parameter1
-      puts "Discriminant : #{@discriminant}\nx1 : #{x1}\nx2 : #{x2}"
+      find_discriminant_positive
     elsif @discriminant.zero?
-      x = -@parameter2 / (@parameter1 * DIV_PARAMETER)
-      puts "Discriminant : #{@discriminant}\nx : #{x} "
+      find_discriminant_zero
     else
       puts "Discriminant : #{@discriminant}\n \"No Roots\""
     end
