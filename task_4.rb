@@ -3,9 +3,9 @@ DIV_PARAMETER = 2
 
 class Discriminant
   def initialize(parameter1, parameter2, parameter3)
-    @parameter1 = validate_parameters(parameter1)
-    @parameter2 = validate_parameters(parameter2)
-    @parameter3 = validate_parameters(parameter3)
+    @parameter1 = parameter1.to_f
+    @parameter2 = parameter2.to_f
+    @parameter3 = parameter3.to_f
     @discriminant = count_discriminant
   end
 
@@ -31,16 +31,6 @@ class Discriminant
       find_discriminant_zero
     else
       puts "Discriminant : #{@discriminant}\n \"No Roots\""
-    end
-  end
-
-  private
-
-  def validate_parameters(triangle_side)
-    if triangle_side.match("[+-]?((\d+\.?\d*)|(\.\d+))") == false || triangle_side.to_f <= 0
-      raise StandardError, "#{triangle_side} must be numeric and greater zero"
-    else
-      triangle_side.to_f
     end
   end
 end
