@@ -12,7 +12,8 @@ class Triangle
       'triangle is equilateral'
     elsif is_isosceles?
       'triangle is isosceles'
-
+    else
+      'your answers isn\'t triangle parameteres'
     end
   end
 
