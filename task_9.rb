@@ -9,7 +9,7 @@ class CountDays
   end
 
   def count_days
-    Date.new(@year, @month, @day).yday
+    Date.new(@year.to_i, @month.to_i, @day.to_i).yday
   end
 
   private
