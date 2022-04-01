@@ -2,8 +2,8 @@ OPTIMAL = 110
 
 class IdealWeight
   def initialize(name, height)
-    @name = name
-    @height = height
+    @name,@height = name, height
+    validate_parameters
   end
 
   def calculate
@@ -14,6 +14,14 @@ class IdealWeight
       "#{@name}'s ideal weight is #{ideal_weight}"
     end
   end
+  def validate_parameters
+    if @height.to_f.zero?
+      puts "height mustn't be string or zero"
+      exit 1
+    end
+
+  end
+
 end
 
 puts "what's your name ?"
