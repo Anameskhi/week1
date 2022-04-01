@@ -38,7 +38,8 @@ class Discriminant
 
   def validate_parameters(parameter)
     if parameter.match("[+-]?((\d+\.?\d*)|(\.\d+))") == false || parameter.to_f <= 0
-      raise StandardError, "#{parameter} must be numeric and greater zero"
+      warn "'#{parameter}' must be numeric and greater zero"
+      exit 1
     else
       parameter.to_f
     end
