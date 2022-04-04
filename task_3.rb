@@ -6,7 +6,7 @@ class Triangle
     validate_sides(@side3)
   end
 
-  def calculate
+  def calculate_type_of_triangle
     if is_rectangular? && is_isosceles?
       'triangle is rectangle isosceles'
     elsif is_rectangular?
@@ -31,11 +31,11 @@ class Triangle
   def is_equilateral?
     @side1 == @side2 && @side2 == @side3
   end
-  def validate_sides(side)
-    if side.to_f == 0
-      puts "Eror!!! your selected side is string"
-      exit 1
 
+  def validate_sides(side)
+    if side.to_f.zero?
+      puts "EROR!!! your selected parameteres is string"
+      exit 1
     end
   end
 end
@@ -46,4 +46,4 @@ puts 'please tell me triangle side2'
 side2 = gets.chomp
 puts 'please tell me triangle side3'
 side3 = gets.chomp
-p Triangle.new(side1, side2, side3).calculate
+p Triangle.new(side1, side2, side3).calculate_type_of_triangle
