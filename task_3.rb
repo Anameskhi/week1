@@ -46,7 +46,6 @@ class Triangle
     raise ArgumentError, 'Error!!! your selected parameters is string' if is_zero?
   end
 end
-
 puts 'please tell me triangle side1'
 side1 = gets.chomp
 puts 'please tell me triangle side2'
@@ -54,4 +53,4 @@ side2 = gets.chomp
 puts 'please tell me triangle side3'
 side3 = gets.chomp
 
-p Triangle.new(side1, side2, side3).call
+puts Triangle.new(side1, side2, side3).call
