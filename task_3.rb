@@ -1,10 +1,16 @@
 class Triangle
   def initialize(side1, side2, side3)
-    @side1, @side2, @side3 = [side1.to_i, side2.to_i, side3.to_i].sort
-    validate_sides(@side1)
-    validate_sides(@side2)
-    validate_sides(@side3)
+    @side1, @side2, @side3 = [side1.to_f, side2.to_f, side3.to_f].sort
   end
+
+  def call
+    validate_sides
+    calculate_type_of_triangle
+  rescue StandardError => e
+    warn e
+  end
+
+  private
 
   def calculate_type_of_triangle
     if is_rectangular? && is_isosceles?
@@ -32,11 +38,12 @@ class Triangle
     @side1 == @side2 && @side2 == @side3
   end
 
-  def validate_sides(side)
-    if side.to_f.zero?
-      puts "EROR!!! your selected parameteres is string"
-      exit 1
-    end
+  def is_zero?
+    @side1.zero? || @side2.zero? || @side3.zero?
+  end
+
+  def validate_sides
+    raise ArgumentError, 'Error!!! your selected parameters is string' if is_zero?
   end
 end
 
@@ -46,4 +53,5 @@ puts 'please tell me triangle side2'
 side2 = gets.chomp
 puts 'please tell me triangle side3'
 side3 = gets.chomp
-p Triangle.new(side1, side2, side3).calculate_type_of_triangle
+
+p Triangle.new(side1, side2, side3).call
