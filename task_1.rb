@@ -19,9 +19,7 @@ class IdealWeight
       puts "height mustn't be string or zero"
       exit 1
     end
-
   end
-
 end
 
 puts "what's your name ?"
