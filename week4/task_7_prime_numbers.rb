@@ -44,3 +44,5 @@ loop do
 end
 
 p PrimeNumbers.new(fill_array).call
+
+
