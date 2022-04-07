@@ -7,7 +7,7 @@ class PrimeNumbers
 
   def call
     validate_nums
-    select_prime_nums
+    sum_of_prime_nums
   end
 
   private
@@ -26,7 +26,11 @@ class PrimeNumbers
     @array.each do |number|
       prime_nums << number if is_prime?(number)
     end
-    prime_nums.sum
+    prime_nums
+  end
+  
+  def sum_of_prime_nums
+    select_prime_nums.sum
   end
 
   def validate_nums
