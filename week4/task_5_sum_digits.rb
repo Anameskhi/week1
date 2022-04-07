@@ -27,3 +27,5 @@ puts 'tell me second num'
 num2 = gets.chomp
 
 puts SumDigits.new(num1, num2).call
+
+
