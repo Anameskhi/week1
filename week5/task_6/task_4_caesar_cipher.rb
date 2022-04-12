@@ -9,7 +9,10 @@ class CaesarCipher
   end
 
   def call
+    validate_shift
     gets_caesar_ciphers
+  rescue ArgumentError => e 
+    warn e
   end
 
  private
@@ -30,6 +33,10 @@ class CaesarCipher
       end
     end
     ciphered
+  end
+
+  def validate_shift
+    raise ArgumentError, "Shift namber is Invalid" unless @shift.to_a(Integer)
   end
 end
 
