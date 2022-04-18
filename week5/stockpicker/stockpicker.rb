@@ -10,7 +10,9 @@ class StockPicker
   rescue ArgumentError => e 
     e.message
   end
-
+  
+  private
+  
   def gets_pair
    buy_day = 0
     sell_day = 0
@@ -40,4 +42,6 @@ class StockPicker
   raise ArgumentError, "Invalid Input" unless is_integer? && @array.is_a?(Array)
   end
 end
+
+
 

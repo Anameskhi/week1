@@ -18,3 +18,6 @@ describe StockPicker do
       expect(StockPicker.new(invalid_array).call).to eq("Invalid Input")
     end
   end
+
+
+  
