@@ -30,4 +30,4 @@ end
     raise ArgumentError, "Array is Invalid" unless is_integer_uniq_num_size_9
 end
 
-puts ExcludingNumber.new([10,2,3,4,5,7,8,1,11]).call
+
