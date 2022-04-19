@@ -7,11 +7,11 @@ class RepdigitNum
     validate_num
     repdigit_num
   rescue ArgumentError => e
-    warn e
+    e.message
   end
 
   def length_of_uniq_nums
-    @number.chars.uniq.length
+    @number.to_s.chars.uniq.length
   end
 
   def repdigit_num
@@ -23,7 +23,9 @@ class RepdigitNum
   end
 
   def number_is_negative_or_string
-    @number.negative? || !@number.match(/\A[+-]?\d+?(\.\d+)?\Z/)
+    return true unless @number.is_a?(Integer)
+
+    @number.negative? 
   end
 
   def validate_num
@@ -33,5 +35,3 @@ class RepdigitNum
 end
 
  
-
-puts RepdigitNum.new(12345).call
