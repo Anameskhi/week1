@@ -9,7 +9,7 @@ class ExcludingNumber
     validate_array
     excluding_number
   rescue ArgumentError => e 
-    warn e
+    e.message
   end
 
   private 
@@ -21,13 +21,13 @@ class ExcludingNumber
   def all_item_is_integer
     @array.all? {|i| i.is_a?(Integer) && FIX_ARRAY.include?(i)}
   end
-  def validate 
+  def is_integer_uniq_num_size_9 
     all_item_is_integer && @array.size == 9 && @array.uniq.size == @array.size
   end
 end
 
   def validate_array
-    raise ArgumentError, "Array is Invalid" unless validate
+    raise ArgumentError, "Array is Invalid" unless is_integer_uniq_num_size_9
 end
 
 puts ExcludingNumber.new([10,2,3,4,5,7,8,1,11]).call
