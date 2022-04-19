@@ -11,7 +11,7 @@ class SumEvenFibonacci
     validate_num
     sum_even_fibonacci_nums
   rescue ArgumentError => e 
-    warn e
+   e.message
   end
 
   private
@@ -38,4 +38,3 @@ class SumEvenFibonacci
   end
 end
 
-p SumEvenFibonacci.new(-10).call
