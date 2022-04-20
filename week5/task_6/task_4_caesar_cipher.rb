@@ -12,7 +12,7 @@ class CaesarCipher
     validate_shift
     gets_caesar_ciphers
   rescue ArgumentError => e 
-    warn e
+    e.message
   end
 
  private
@@ -36,8 +36,9 @@ class CaesarCipher
   end
 
   def validate_shift
-    raise ArgumentError, "Shift namber is Invalid" unless @shift.to_a(Integer)
+    raise ArgumentError, "Shift namber is Invalid" unless @shift.is_a?(Integer) && @word.is_a?(String)
   end
 end
 
-p CaesarCipher.new("ah7/sj", 27).call
+
+
