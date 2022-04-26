@@ -11,7 +11,9 @@
     ]
     
 class TicTacToe
+  
   def initialize
+
     @board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
   end
 
@@ -32,14 +34,15 @@ class TicTacToe
   end
 
   def position_taken?(input_to_index)
-      if @board[input_to_index]  == 'X' || @board[input_to_index] == 'O'
-          true
-      else
-          false
-      end
+    if (@board[input_to_index] == " ") || (@board[input_to_index] == "") || (@board[input_to_index] == nil)
+      return false 
+    else
+        return true
+    end
   end
+
   def valid_move(input_to_index)
-      !position_taken?(input_to_index) && @board[input_to_index]
+      !position_taken?(input_to_index) && input_to_index.between?(0, 8)
   end
 
   def turn_count
@@ -55,7 +58,7 @@ class TicTacToe
   end
 
   def turn 
-    puts "tell us your choice"
+    puts "Player1"
     choice = gets.chomp!
     position = input_to_index(choice)
     if valid_move(position)
@@ -64,11 +67,47 @@ class TicTacToe
     else
       turn
     end
-   
+    puts "Player2"
+    choice = gets.chomp!
+    position = input_to_index(choice)
+    if valid_move(position)
+      move(position,current_player)
+      display_board
+    else
+      turn
+    end
   end
 
+  def won?
+    WIN_COMBINATIONS.detect do |combo|
+    @board[combo[0]] == @board[combo[1]] &&
+    @board[combo[1]] == @board[combo[2]] && 
+    position_taken?(combo[0])
+    end
+  end
 
+  def full?
+    @board.all?{|token| token == "X" || token == "O"}
+  end
 
+  def draw?
+    !won? && full?
+  end
+
+  def over?
+    won? || draw?
+  end
+
+  def play
+    while !over?
+      turn
+    end
+    if won?
+      "congretulation"
+    elsif
+      "it's Draw"
+    end
+  end
 end
 
-p TicTacToe.new.turn
+p TicTacToe.new.play
