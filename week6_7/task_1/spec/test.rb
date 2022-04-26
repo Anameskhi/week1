@@ -7,6 +7,8 @@ describe BubbleSort do
     let(:input_array_2) { [23, 2, 32, 1, 4, 54, 2] }
     let(:input_array_3) { [5] }
     let(:input_array_4) { [] }
+    let(:input_float_and_integer){[1, 2, 1.5, 3.4]}
+    let(:input_strings){["the","The","beautiful"]}
 
     it 'same numbers in array' do
       expect(BubbleSort.new(input_array_1).call).to eq [2, 2, 2, 3, 5, 10, 24]
@@ -19,6 +21,12 @@ describe BubbleSort do
     end
     it 'empty array' do
       expect(BubbleSort.new(input_array_4).call).to eq []
+    end
+    it 'float and integer' do
+      expect(BubbleSort.new(input_float_and_integer).call).to eq [1, 1.5, 2, 3.4]
+    end
+    it "string check" do 
+      expect(BubbleSort.new(input_strings).call).to eq ["The","beautiful","the"]
     end
   end
 

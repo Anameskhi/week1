@@ -30,10 +30,10 @@ class BubbleSort
     @array
   end
 
+
   def validate_array
-    raise ArgumentError, 'Invalid Input' unless @array.all? { |elem| elem.is_a?(Integer) }
+    raise ArgumentError, 'Invalid Input' unless @array.all? { |elem| elem.is_a?(Numeric)} || @array.all? { |elem| elem.is_a?(String)} 
   end
 end
-
 
 
