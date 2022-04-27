@@ -64,61 +64,45 @@ module Enumerable
   end
 end
 
-def my_inject(start_value)
-  if block_given?
-    value = start_value
-    my_each{|element| value = yield(value,element)}
-    value
-  else 
-    enum_for(:my_inject)
+  def my_inject(start_value)
+    if block_given?
+      value = start_value
+      my_each{|element| value = yield(value,element)}
+      value
+    else 
+      enum_for(:my_inject)
+    end
   end
+
+  def my_map
+    if block_given?
+      selected_items = []
+    my_each{|element| selected_items << yield(element) }
+      selected_items
+    else
+      enum_for(:my_map)
+    end
+  end 
+
+  def my_none?
+    if block_given?
+      selected_items = []
+    my_each{|element| selected_items << element if yield(element)}
+    selected_items.empty? ? true : false
+    else
+      enum_for(:my_none)
+    end
+  end
+
+  def my_select
+    if block_given?
+      selected_items = []
+    my_each{|element| selected_items << element if yield(element)}
+      selected_items
+    else
+      enum_for(:my_select)
+    end
+  end
+
 end
 
-def my_map
-  if block_given?
-    selected_items = []
-  my_each{|element| selected_items << yield(element) }
-    selected_items
-  else
-    enum_for(:my_map)
-  end
-end 
-
-def my_none?
-  if block_given?
-    selected_items = []
-  my_each{|element| selected_items << element if yield(element)}
-  selected_items.empty? ? true : false
-  else
-    enum_for(:my_none)
-  end
-end
-
-def my_select
-  if block_given?
-    selected_items = []
-  my_each{|element| selected_items << element if yield(element)}
-    selected_items
-  else
-    enum_for(:my_select)
-  end
-end
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-end
