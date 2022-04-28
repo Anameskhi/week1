@@ -35,7 +35,7 @@ class TicTacToe
   end
 
   def position_taken?(input_to_index)
-    if (@board[input_to_index] == " ") || (@board[input_to_index] == "") || (@board[input_to_index] == nil)
+    if ["", " ", nil].any? @board[input_to_index]
       return false 
     else
       return true
@@ -61,26 +61,23 @@ class TicTacToe
   def turn
     if @current_index == 0 
       puts "Player1"
-      choice = gets.chomp!
-      position = input_to_index(choice)
-      if valid_move(position)
-        move(position,current_player)
-        display_board
-      else
-        turn
-      end
+      valid_moves
     else  
       puts "Player2"
-      choice = gets.chomp!
-      position = input_to_index(choice)
-      if valid_move(position)
-        move(position,current_player)
-        display_board
-      else
-        turn
-      end
+      valid_moves
     end
   end
+
+  def valid_moves
+    choice = gets.chomp!
+    position = input_to_index(choice)
+  if valid_move(position)
+    move(position,current_player)
+    display_board
+  else
+    turn
+  end
+end
 
   def won?
     WIN_COMBINATIONS.any? do |combo|
