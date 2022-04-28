@@ -16,18 +16,21 @@ class BubbleSort
     return @array if @array.length <= 1
 
     @array.each do
-      swap = false
+      @swap = true
       @array.each_with_index do |num, index|
         break if index == @array.length - 1
-
-        if num > @array[index + 1]
-          @array[index], @array[index + 1] = @array[index + 1], @array[index]
-          swap = true
-        end
+        sort_array(num, index)
       end
-      break unless swap
+      break if @swap
     end
     @array
+  end
+  
+  def sort_array(num, index)
+    if num > @array[index + 1]
+      @array[index], @array[index + 1] = @array[index + 1], @array[index]
+      @swap = false
+    end
   end
 
   def string_or_numeric_class
