@@ -219,7 +219,7 @@ describe NumberGame do
 
       # remove the 'x' before running this test
       it 'outputs correct phrase' do
-        congrats_phrase = "Congratulations! You picked the random number in 3 guesses!\n"
+        congrats_phrase = "That was hard. It took you 4 guesses!\n"
         expect { game_three.final_message }.to output(congrats_phrase).to_stdout
       end
     end

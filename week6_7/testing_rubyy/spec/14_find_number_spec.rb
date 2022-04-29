@@ -82,24 +82,28 @@ describe FindNumber do
   end
 end
 
-# ASSIGNMENT
-# For this lesson you will be doing TDD for 3 methods: #make_guess,
-# #game_over?, and #update_range.
+class FindNumber
+  attr_reader :min, :max, :answer, :guess
 
-# After you have some experience using TDD, you can use the typical
-# Red-Green-Refactor workflow.
-# https://thoughtbot.com/upcase/videos/red-green-refactor-by-example
+  def initialize(min, max, answer = RandomNumber.new(min, max), guess = nil)
+    @min = min
+    @max = max
+    @answer = answer.value
+    @guess = guess
+  end
 
-# Since this is probably your first experience with TDD, let's extend the
-# workflow to include a few more steps:
-# 1. Read & understand the requirement for one method only.
-# 2. Write one test for that method; run the tests to see it fail.
-# 3. Write the method to fulfill the requirement.
-# 4. Run the tests again. If they don't all pass, redo steps 1-3.
-# 5. When your first test is passing, write the additional tests.
-# 6. Run all of the tests. If any do not pass, redo steps 3-5.
-# 7. Optional: Refactor your code and/or tests, keeping all tests passing.
+  def make_guess
+    @guess = (min + max) / 2
+  end
 
+  def game_over?
+    guess == answer
+  end
+
+  def update_range
+    guess < answer ? @min = guess + 1 : @max = guess - 1
+  end
+end
 describe FindNumber do
   # ASSIGNMENT: METHOD #1
 
@@ -114,8 +118,8 @@ describe FindNumber do
     # Create a random_number double called 'number_guessing'. Allow the double
     # to receive 'value' and return the value of 8, in one of the two ways
     # explained above.
-
-    subject(:game_guessing) { described_class.new(0, 9, number_guessing) }
+    
+    subject(:game_guessing) { described_class.new(0, 9) }
 
     # Before you write the #make_guess method:
     # Write a test that would expect #make_guess to return the average of
@@ -123,7 +127,8 @@ describe FindNumber do
     # It will fail with an undefined method error because you haven't
     # written #make_guess yet!
     context 'when min is 0 and max is 9' do
-      xit 'returns 4' do
+      it 'returns 4' do
+        expect(game_guessing.make_guess).to eq(4)
       end
     end
 
@@ -136,12 +141,16 @@ describe FindNumber do
     # random number double created inside this method's describe block.
 
     context 'when min is 5 and max is 9' do
-      xit 'returns 7' do
+      subject(:game_guessing){described_class.new(5,9)}
+      it 'returns 7' do
+        expect(game_guessing.make_guess).to eq(7)
       end
     end
 
     context 'when min is 8 and max is 9' do
-      xit 'returns 8' do
+      subject(:game_guessing){described_class.new(8,9)}
+      it 'returns 8' do
+        expect(game_guessing.make_guess).to eq(8)
       end
     end
 
