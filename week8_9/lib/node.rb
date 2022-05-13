@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Node
   attr_reader   :value, :next
   attr_accessor :word
@@ -9,4 +11,3 @@ class Node
     @next  = []
   end
 end
-
